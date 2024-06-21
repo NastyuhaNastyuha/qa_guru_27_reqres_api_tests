@@ -48,3 +48,9 @@ tasks.withType(Test) {
         }
     }
 }
+
+task reqres_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("reqres")
+    }
+}

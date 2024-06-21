@@ -2,6 +2,7 @@ package tests;
 
 import models.*;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.text.SimpleDateFormat;
@@ -24,6 +25,7 @@ import static specs.UpdateUserSpec.updateUserResponseSpec;
 public class ReqresApiTests extends TestBase {
 
     @DisplayName("Успешное создание пользователя")
+    @Tag("reqres")
     @Test
     void successfulCreateUser() {
         Date date = new Date();
@@ -57,6 +59,7 @@ public class ReqresApiTests extends TestBase {
     }
 
     @DisplayName("Успешное получение одного пользователя")
+    @Tag("reqres")
     @Test
     void successfulGetSingleUser() {
         int userId = 3;
@@ -83,6 +86,7 @@ public class ReqresApiTests extends TestBase {
     }
 
     @DisplayName("Успешное редактирование пользователя")
+    @Tag("reqres")
     @Test
     void successfulUpdateUser() {
         Date date = new Date();
@@ -113,6 +117,7 @@ public class ReqresApiTests extends TestBase {
 
 
     @DisplayName("Невозможно зарегистрировать пользователя без пароля")
+    @Tag("reqres")
     @Test
     void unsuccessfulRegistrationUser() {
         String userEmail = "sydney@fife";
@@ -137,6 +142,7 @@ public class ReqresApiTests extends TestBase {
     }
 
     @DisplayName("Успешное удаление пользователя")
+    @Tag("reqres")
     @Test
     void successfulDeleteUser() {
         int userId = 2;
