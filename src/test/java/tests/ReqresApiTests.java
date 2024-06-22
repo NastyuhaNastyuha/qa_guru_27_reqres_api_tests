@@ -11,15 +11,7 @@ import java.util.Date;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.*;
 import static org.assertj.core.api.Assertions.assertThat;
-import static specs.CreateUserSpec.createUserRequestSpec;
-import static specs.CreateUserSpec.createUserResponseSpec;
-import static specs.DeleteUserSpec.deleteUserRequestSpec;
-import static specs.DeleteUserSpec.deleteUserResponseSpec;
-import static specs.GetUserSpec.getUserRequestSpec;
-import static specs.GetUserSpec.getUserResponseSpec;
-import static specs.RegisterUserSpec.*;
-import static specs.UpdateUserSpec.updateUserRequestSpec;
-import static specs.UpdateUserSpec.updateUserResponseSpec;
+import static specs.ReqresSpec.*;
 
 @DisplayName("API-тесты для reqres.in")
 public class ReqresApiTests extends TestBase {
@@ -27,7 +19,7 @@ public class ReqresApiTests extends TestBase {
     @DisplayName("Успешное создание пользователя")
     @Tag("reqres")
     @Test
-    void successfulCreateUser() {
+    void successfulCreateUserTest() {
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String todayDate = simpleDateFormat.format(date.getTime());
@@ -39,18 +31,18 @@ public class ReqresApiTests extends TestBase {
         userData.setName(userName);
         userData.setUserJob(userJob);
 
-        CreateUserResponseModel response = step("Make request", () ->
-                given(createUserRequestSpec)
+        CreateUserResponseModel response = step("Отправить запрос на создание пользователя", () ->
+                given(requestSpec)
                         .body(userData)
 
                         .when()
                         .post("/users")
 
                         .then()
-                        .spec(createUserResponseSpec)
+                        .spec(responseStatusCode201Spec)
                         .extract().as(CreateUserResponseModel.class));
 
-        step("Check response", () -> {
+        step("Проверить ответ", () -> {
             assertThat(response.getName()).isEqualTo(userName);
             assertThat(response.getUserJob()).isEqualTo(userJob);
             assertThat(response.getId()).isNotNull();
@@ -61,24 +53,24 @@ public class ReqresApiTests extends TestBase {
     @DisplayName("Успешное получение одного пользователя")
     @Tag("reqres")
     @Test
-    void successfulGetSingleUser() {
+    void successfulGetSingleUserTest() {
         int userId = 3;
         String userEmail = "emma.wong@reqres.in";
         String userFirstName = "Emma";
         String userLastName = "Wong";
 
-        GetUserResponseModel response = step("Make request", () ->
-                given(getUserRequestSpec)
+        GetUserResponseModel response = step("Отправить запрос на получение данных одного пользователя", () ->
+                given(requestSpec)
 
                         .when()
                         .get("/users/" + userId)
 
                         .then()
-                        .spec(getUserResponseSpec)
+                        .spec(responseStatusCode200Spec)
                         .extract().as(GetUserResponseModel.class));
 
 
-        step("Check response", () -> {
+        step("Проверить ответ", () -> {
             assertThat(response.getData().getEmail()).isEqualTo(userEmail);
             assertThat(response.getData().getFirstName()).isEqualTo(userFirstName);
             assertThat(response.getData().getLastName()).isEqualTo(userLastName);
@@ -88,7 +80,7 @@ public class ReqresApiTests extends TestBase {
     @DisplayName("Успешное редактирование пользователя")
     @Tag("reqres")
     @Test
-    void successfulUpdateUser() {
+    void successfulUpdateUserTest() {
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String todayDate = simpleDateFormat.format(date.getTime());
@@ -99,17 +91,17 @@ public class ReqresApiTests extends TestBase {
         UpdateUserBodyModel userData = new UpdateUserBodyModel();
         userData.setJob(userJob);
 
-        UpdateUserResponseModel response = step("Make request", () ->
-                given(updateUserRequestSpec)
+        UpdateUserResponseModel response = step("Отправить запрос на редактирование должности пользователя",
+                () -> given(requestSpec)
                         .body(userData)
 
                         .when()
                         .patch("/users/" + userId)
 
                         .then()
-                        .spec(updateUserResponseSpec)
+                        .spec(responseStatusCode200Spec)
                         .extract().as(UpdateUserResponseModel.class));
-        step("Check response", () -> {
+        step("Проверить ответ", () -> {
             assertThat(response.getJob()).isEqualTo(userJob);
             assertThat(response.getUpdatedAt()).contains(todayDate);
         });
@@ -119,41 +111,41 @@ public class ReqresApiTests extends TestBase {
     @DisplayName("Невозможно зарегистрировать пользователя без пароля")
     @Tag("reqres")
     @Test
-    void unsuccessfulRegistrationUser() {
+    void unsuccessfulRegistrationUserTest() {
         String userEmail = "sydney@fife";
         String errorMessage = "Missing password";
 
         RegisterUserBodyModel userData = new RegisterUserBodyModel();
         userData.setEmail(userEmail);
 
-        BadRequestResponseModel response = step("Make request", () ->
-                given(registerUserRequestSpec)
+        BadRequestResponseModel response = step("Отправить запрос регистрации пользователя без пароля", () ->
+                given(requestSpec)
                         .body(userData)
 
                         .when()
                         .post("/register")
 
                         .then()
-                        .spec(registerUserErrorResponseSpec)
+                        .spec(responseStatusCode400Spec)
                         .extract().as(BadRequestResponseModel.class));
 
-        step("Check response", () ->
+        step("Проверить ответ", () ->
                 assertThat(response.getError()).isEqualTo(errorMessage));
     }
 
     @DisplayName("Успешное удаление пользователя")
     @Tag("reqres")
     @Test
-    void successfulDeleteUser() {
+    void successfulDeleteUserTest() {
         int userId = 2;
 
-        step("Make request and check status code", () ->
-                given(deleteUserRequestSpec)
+        step("Отправить запрос на удаление пользователя и проверить ответ", () ->
+                given(requestSpec)
 
                         .when()
                         .delete("/users/" + userId)
 
                         .then()
-                        .spec(deleteUserResponseSpec));
+                        .spec(responseStatusCode204Spec));
     }
 }
