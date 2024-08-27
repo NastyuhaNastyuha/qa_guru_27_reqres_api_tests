@@ -1,7 +1,6 @@
 package tests;
 
-import io.qameta.allure.Epic;
-import io.qameta.allure.Story;
+import io.qameta.allure.*;
 import models.BadRequestResponseModel;
 import models.LoginResponseModel;
 import models.RegisterUserBodyModel;
@@ -16,9 +15,12 @@ import static specs.ReqresSpec.*;
 
 @Epic("Регистрация и авторизация")
 @Story("Авторизация пользователя")
+@Feature("Авторизация пользователя")
 public class LoginTests extends TestBase {
     @DisplayName("Успешная авторизация пользователя")
     @Tag("reqres")
+    @Owner("rybinaa")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     void successfulLoginTest() {
         String email = "eve.holt@reqres.in";
@@ -46,6 +48,8 @@ public class LoginTests extends TestBase {
 
     @DisplayName("Невозможно авторизоваться без пароля")
     @Tag("reqres")
+    @Owner("rybinaa")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     void unsuccessfulLoginTest() {
         String email = "peter@klaven";

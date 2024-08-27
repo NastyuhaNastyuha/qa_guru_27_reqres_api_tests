@@ -1,7 +1,6 @@
 package tests;
 
-import io.qameta.allure.Epic;
-import io.qameta.allure.Story;
+import io.qameta.allure.*;
 import models.GetUserResponseModel;
 import models.UpdateUserBodyModel;
 import models.UpdateUserResponseModel;
@@ -19,9 +18,12 @@ import static specs.ReqresSpec.*;
 
 @Epic("Взаимодействие с пользователем")
 @Story("Просмотр, редактирование, удаление пользователя")
+@Feature("CRUD пользователя")
 public class UserTests {
     @DisplayName("Успешное получение одного пользователя")
     @Tag("reqres")
+    @Owner("rybinaa")
+    @Severity(SeverityLevel.NORMAL)
     @Test
     void successfulGetSingleUserTest() {
         int userId = 3;
@@ -49,6 +51,8 @@ public class UserTests {
 
     @DisplayName("Успешное частичное редактирование пользователя")
     @Tag("reqres")
+    @Owner("rybinaa")
+    @Severity(SeverityLevel.NORMAL)
     @Test
     void successfulUpdateUserTest() {
         Date date = new Date();
@@ -79,6 +83,8 @@ public class UserTests {
 
     @DisplayName("Успешное удаление пользователя")
     @Tag("reqres")
+    @Owner("rybinaa")
+    @Severity(SeverityLevel.NORMAL)
     @Test
     void successfulDeleteUserTest() {
         int userId = 2;
