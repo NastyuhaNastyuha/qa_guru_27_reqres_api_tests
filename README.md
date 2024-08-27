@@ -1,5 +1,5 @@
 # Проект по автоматизации тестирования API для сайта [Reqres](https://reqres.in/)
-<p align="center"><a href="https://reqres.in/"><img src="images/icons/reqres.png" align="center"  height="150"  alt="reqres"/></a></p>
+<p align="center"><a href="https://reqres.in/"><img src="images/icons/reqres-logo.png" align="center"  height="150"  alt="reqres"/></a></p>
 
 > Reqres - сервис, предоставляющий публичный API для практики тестирования и разработки
 

@@ -19,6 +19,7 @@ import static specs.ReqresSpec.*;
 @Epic("Взаимодействие с пользователем")
 @Story("Просмотр, редактирование, удаление пользователя")
 @Feature("CRUD пользователя")
+@DisplayName("Тесты на CRUD пользователя")
 public class UserTests {
     @DisplayName("Успешное получение одного пользователя")
     @Tag("reqres")

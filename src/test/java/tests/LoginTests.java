@@ -16,6 +16,7 @@ import static specs.ReqresSpec.*;
 @Epic("Регистрация и авторизация")
 @Story("Авторизация пользователя")
 @Feature("Авторизация пользователя")
+@DisplayName("Тесты на авторизацию пользователя")
 public class LoginTests extends TestBase {
     @DisplayName("Успешная авторизация пользователя")
     @Tag("reqres")
