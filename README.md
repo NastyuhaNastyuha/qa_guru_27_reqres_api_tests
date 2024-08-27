@@ -92,7 +92,7 @@ gradle clean test
 ### Графики
 
 <p align="center">
-<img src="images/screenshots/screen2.png">
+<img src="images/screenshots/allure-graphs.png">
 </p>
 
 ### Тесты
@@ -106,7 +106,7 @@ gradle clean test
 ## Интеграция с [Allure TestOps](https://allure.autotests.cloud/project/4207/test-cases)
 
 <p align="center">
-<img src="images/screenshots/screen4.png">
+<img src="images/screenshots/allureTestops-screen.png">
 </p>
 
 <a id="jira"></a>
@@ -114,7 +114,7 @@ gradle clean test
 ## Интеграция с [Jira](https://jira.autotests.cloud/browse/HOMEWORK-1209)
 
 <p align="center">
-<img src="images/screenshots/screen5.png">
+<img src="images/screenshots/jira-screen.png">
 </p>
 
 <a id="telegram"></a>
