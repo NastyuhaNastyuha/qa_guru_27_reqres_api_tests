@@ -21,7 +21,7 @@ import static specs.ReqresSpec.*;
 @Story("Регистрация пользователя")
 @Feature("Регистрация пользователя")
 @DisplayName("Тесты на регистрацию пользователя")
-public class RegistrationTests extends  TestBase{
+public class RegistrationTests extends TestBase {
     @DisplayName("Успешное создание пользователя")
     @Tag("reqres")
     @Owner("rybinaa")
