@@ -35,12 +35,9 @@ public class UserTests {
         GetUserResponseModel response = step("Отправить запрос на получение данных одного пользователя", () ->
                 given(requestSpec)
 
-                        .when()
-                        .get("/users/" + userId)
+                .when().get("/users/" + userId)
 
-                        .then()
-                        .spec(responseStatusCode200Spec)
-                        .extract().as(GetUserResponseModel.class));
+                .then().spec(responseStatusCode200Spec).extract().as(GetUserResponseModel.class));
 
 
         step("Проверить ответ", () -> {
@@ -66,16 +63,12 @@ public class UserTests {
         UpdateUserBodyModel userData = new UpdateUserBodyModel();
         userData.setJob(userJob);
 
-        UpdateUserResponseModel response = step("Отправить запрос на редактирование должности пользователя",
-                () -> given(requestSpec)
-                        .body(userData)
+        UpdateUserResponseModel response = step("Отправить запрос на редактирование должности пользователя", () ->
+                given(requestSpec).body(userData)
 
-                        .when()
-                        .patch("/users/" + userId)
+                .when().patch("/users/" + userId)
 
-                        .then()
-                        .spec(responseStatusCode200Spec)
-                        .extract().as(UpdateUserResponseModel.class));
+                .then().spec(responseStatusCode200Spec).extract().as(UpdateUserResponseModel.class));
         step("Проверить ответ", () -> {
             assertThat(response.getJob()).isEqualTo(userJob);
             assertThat(response.getUpdatedAt()).contains(todayDate);
@@ -93,10 +86,8 @@ public class UserTests {
         step("Отправить запрос на удаление пользователя и проверить ответ", () ->
                 given(requestSpec)
 
-                        .when()
-                        .delete("/users/" + userId)
+                .when().delete("/users/" + userId)
 
-                        .then()
-                        .spec(responseStatusCode204Spec));
+                .then().spec(responseStatusCode204Spec));
     }
 }

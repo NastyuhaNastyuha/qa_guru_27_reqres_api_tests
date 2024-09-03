@@ -26,7 +26,6 @@
 <a href="https://gradle.org/"><img alt="Gradle" height="50" src="images/icons/gradle-original.svg" width="50"/></a>  
 <a href="https://junit.org/junit5/"><img alt="JUnit 5" height="50" src="images/icons/junit-original.svg" width="50"/></a>
 <a href="https://rest-assured.io/"><img alt="RestAssured" height="50" src="images/icons/restAssured.png" width="50"/></a>
-<a href="https://selenide.org/"><img alt="Selenide" height="50" src="images/icons/selenide-logo-big.png" width="50"/></a>
 <a href="https://www.jenkins.io/"><img alt="Jenkins" height="50" src="images/icons/jenkins-original.svg" width="50"/></a>
 <a href="https://github.com/allure-framework/"><img alt="Allure Report" height="50" src="images/icons/allureReports.png" width="50"/></a>
 <a href="https://qameta.io/"><img alt="Allure TestOps" height="50" src="images/icons/allureTestops.svg" width="50"/></a>

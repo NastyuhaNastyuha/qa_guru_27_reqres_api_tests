@@ -32,18 +32,15 @@ public class LoginTests extends TestBase {
         userData.setPassword(password);
 
         LoginResponseModel response = step("Отправить запрос на авторизацию пользователя", () ->
-                given(requestSpec)
-                        .body(userData)
+                given(requestSpec).body(userData)
 
-                        .when()
-                        .post("/login")
+                .when().post("/login")
 
-                        .then()
-                        .spec(responseStatusCode200Spec)
-                        .extract().as(LoginResponseModel.class));
+                .then().spec(responseStatusCode200Spec).extract().as(LoginResponseModel.class));
 
         step("Проверить ответ", () -> {
-            assertThat(response.getToken()).isNotNull();
+            assertThat(response.getToken()).isAlphanumeric();
+            assertThat(response.getToken()).hasSizeGreaterThanOrEqualTo(17);
         });
     }
 
@@ -60,15 +57,11 @@ public class LoginTests extends TestBase {
         userData.setEmail(email);
 
         BadRequestResponseModel response = step("Отправить запрос на авторизацию пользователя без пароля", () ->
-                given(requestSpec)
-                        .body(userData)
+                given(requestSpec).body(userData)
 
-                        .when()
-                        .post("/login")
+                .when().post("/login")
 
-                        .then()
-                        .spec(responseStatusCode400Spec)
-                        .extract().as(BadRequestResponseModel.class));
+                .then().spec(responseStatusCode400Spec).extract().as(BadRequestResponseModel.class));
 
         step("Проверить ответ", () -> {
             assertThat(response.getError()).isEqualTo(errorMessage);

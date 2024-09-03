@@ -40,15 +40,11 @@ public class RegistrationTests extends TestBase {
         userData.setUserJob(userJob);
 
         CreateUserResponseModel response = step("Отправить запрос на создание пользователя", () ->
-                given(requestSpec)
-                        .body(userData)
+                given(requestSpec).body(userData)
 
-                        .when()
-                        .post("/users")
+                .when().post("/users")
 
-                        .then()
-                        .spec(responseStatusCode201Spec)
-                        .extract().as(CreateUserResponseModel.class));
+                .then().spec(responseStatusCode201Spec).extract().as(CreateUserResponseModel.class));
 
         step("Проверить ответ", () -> {
             assertThat(response.getName()).isEqualTo(userName);
@@ -71,17 +67,12 @@ public class RegistrationTests extends TestBase {
         userData.setEmail(userEmail);
 
         BadRequestResponseModel response = step("Отправить запрос регистрации пользователя без пароля", () ->
-                given(requestSpec)
-                        .body(userData)
+                given(requestSpec).body(userData)
 
-                        .when()
-                        .post("/register")
+                .when().post("/register")
 
-                        .then()
-                        .spec(responseStatusCode400Spec)
-                        .extract().as(BadRequestResponseModel.class));
+                .then().spec(responseStatusCode400Spec).extract().as(BadRequestResponseModel.class));
 
-        step("Проверить ответ", () ->
-                assertThat(response.getError()).isEqualTo(errorMessage));
+        step("Проверить ответ", () -> assertThat(response.getError()).isEqualTo(errorMessage));
     }
 }
